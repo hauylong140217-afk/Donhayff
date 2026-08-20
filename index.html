@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tối Ưu Độ Nhạy Free Fire Pro Full</title>
+    <title>Tối Ưu Độ Nhạy Free Fire Auto DPI</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -201,20 +201,20 @@
 <body>
 
 <div class="container">
-    <div class="title">Độ Nhạy <span>FF Pro Max</span></div>
+    <div class="title">Độ Nhạy <span>FF Full Đỏ</span></div>
 
     <div class="input-group">
         <label for="device">Dòng Điện Thoại</label>
-        <input type="text" id="device" placeholder="VD: iPhone 11, Vivo, Samsung...">
+        <input type="text" id="device" placeholder="VD: Vivo, iPhone, Samsung...">
     </div>
 
     <div class="input-group">
-        <label for="dpi">Chỉ Số DPI Hiện Tại</label>
-        <input type="number" id="dpi" placeholder="Nhập DPI" value="764">
+        <label for="dpi">Chỉ Số DPI (Tự động nhận diện)</label>
+        <input type="number" id="dpi" placeholder="Nhập DPI nếu có chỉnh riêng">
     </div>
 
     <div class="input-group">
-        <label>Chọn Tình Trạng Khi Bắn (Có thể chọn nhiều):</label>
+        <label>Chọn Tình Trạng Khi Bắn (Chọn nhiều ô):</label>
         <div class="checkbox-grid">
             <label class="checkbox-item"><input type="checkbox" value="nang_tam"> Nặng tâm</label>
             <label class="checkbox-item"><input type="checkbox" value="lo_dau"> Lố đầu</label>
@@ -225,7 +225,7 @@
         </div>
     </div>
 
-    <button onclick="tinhDoNhay()">TÍNH ĐỘ NHẠY FULL ĐỎ</button>
+    <button onclick="tinhDoNhay()">TÍNH ĐỘ NHẠY chuẩn</button>
 
     <div id="resultBox" class="result-card">
         <div class="result-header">
@@ -248,6 +248,13 @@
 </div>
 
 <script>
+// Tự động nhận diện DPI từ máy khi mở trang web
+window.onload = function() {
+    let ratio = window.devicePixelRatio || 1;
+    let estimatedDpi = Math.round(320 * ratio);
+    document.getElementById("dpi").value = estimatedDpi;
+};
+
 function tinhDoNhay() {
     let device = document.getElementById("device").value || "Thiết bị chung";
     let dpi = parseInt(document.getElementById("dpi").value) || 400;
@@ -255,7 +262,7 @@ function tinhDoNhay() {
     let selectedBoxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]:checked');
     let selectedStatuses = Array.from(selectedBoxes).map(cb => cb.value);
 
-    // Thuật toán tối ưu tỉ lệ đạn đỏ
+    // Thuật toán cân bằng độ nhạy
     let look = Math.max(65, Math.min(98, Math.round(100 - (dpi - 360) * 0.035)));
     let redDot = look - 4;
     let scope2x = look - 7;
@@ -266,14 +273,14 @@ function tinhDoNhay() {
     let tips = [];
 
     if (selectedStatuses.length === 0) {
-        tips.push("• **Mẹo:** Nên tích chọn đúng tình trạng bạn hay gặp nhất để thuật toán chỉnh đạn gom đỏ tốt nhất.");
+        tips.push("• **Mẹo:** Tích chọn ít nhất 1 tình trạng bắn để tối ưu tỉ lệ đạn đỏ tốt nhất.");
     }
 
     selectedStatuses.forEach(status => {
         switch(status) {
             case "nang_tam":
                 look += 7; redDot += 6; btnSize -= 2;
-                tips.push("• **Nặng tâm:** Đặt nút bắn thấp xuống 5% so với vị trí cũ để tăng lực kéo.");
+                tips.push("• **Nặng tâm:** Đặt nút bắn thấp hơn 5% so với vị trí cũ để tăng biên độ kéo.");
                 break;
             case "lo_dau":
                 look -= 6; redDot -= 7; btnSize += 3;
@@ -281,11 +288,11 @@ function tinhDoNhay() {
                 break;
             case "giat_tam":
                 look -= 4; redDot -= 5; sniper -= 5;
-                tips.push("• **Giật tâm:** Vuốt nhẹ nút bắn theo nhịp ngắn, tránh kéo mạnh 1 lần.");
+                tips.push("• **Giật tâm:** Vuốt nhẹ nút bắn theo nhịp ngắn, tránh kéo giật mạnh.");
                 break;
             case "rung_tay":
                 look -= 5; redDot -= 5; btnSize += 4; freeLook -= 10;
-                tips.push("• **Rung tay:** Tăng nút bắn to giúp điểm tựa ngón tay vững hơn.");
+                tips.push("• **Rung tay:** Tăng nút bắn to giúp ngón tay giữ vững tâm súng hơn.");
                 break;
             case "lac_dan":
                 redDot -= 4; scope2x -= 4; scope4x -= 4;
@@ -298,7 +305,7 @@ function tinhDoNhay() {
         }
     });
 
-    // Giới hạn trong khoảng chuẩn game
+    // Ép khung giới hạn chuẩn game
     look = Math.min(100, Math.max(50, look));
     redDot = Math.min(100, Math.max(50, redDot));
     scope2x = Math.min(100, Math.max(50, scope2x));
