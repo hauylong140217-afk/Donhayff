@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tối Ưu Độ Nhạy Free Fire</title>
+    <title>Tối Ưu Độ Nhạy Free Fire Multi-Status</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -31,7 +31,7 @@
             border-radius: 20px;
             padding: 30px 25px;
             width: 100%;
-            max-width: 440px;
+            max-width: 460px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 71, 87, 0.15);
         }
 
@@ -65,7 +65,7 @@
             letter-spacing: 0.5px;
         }
 
-        input, select {
+        input[type="text"], input[type="number"] {
             width: 100%;
             padding: 12px 16px;
             background: #161d24;
@@ -77,9 +77,36 @@
             transition: all 0.3s ease;
         }
 
-        input:focus, select:focus {
+        input[type="text"]:focus, input[type="number"]:focus {
             border-color: #ff4757;
             box-shadow: 0 0 10px rgba(255, 71, 87, 0.3);
+        }
+
+        /* Styling cho danh sách Checkbox */
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            background: #161d24;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #2f3542;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            color: #ccc;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: #ff4757;
+            cursor: pointer;
         }
 
         button {
@@ -94,7 +121,7 @@
             font-weight: 800;
             letter-spacing: 1px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
             box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
             transition: all 0.3s ease;
         }
@@ -102,10 +129,6 @@
         button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(255, 71, 87, 0.6);
-        }
-
-        button:active {
-            transform: translateY(0);
         }
 
         .result-card {
@@ -170,9 +193,9 @@
             border-left: 3px solid #ffab00;
             padding: 10px 12px;
             border-radius: 0 8px 8px 0;
-            font-size: 13px;
+            font-size: 12px;
             color: #eccc68;
-            line-height: 1.4;
+            line-height: 1.5;
         }
     </style>
 </head>
@@ -192,15 +215,15 @@
     </div>
 
     <div class="input-group">
-        <label for="status">Tình Trạng Khi Kéo Tâm</label>
-        <select id="status">
-            <option value="nang_tam">Nặng tâm (không kéo lên nổi)</option>
-            <option value="lo_dau">Lố đầu (đạn bay lên trời)</option>
-            <option value="giat_tam">Giật tâm (tâm nảy không đều)</option>
-            <option value="rung_tay">Rung tay (tâm lắc qua lại)</option>
-            <option value="lac_dan">Lạc đạn (đạn xòe rộng, vàng nhiều)</option>
-            <option value="truot_dich">Trượt địch (không bám vào người)</option>
-        </select>
+        <label>Chọn Tình Trạng Khi Bắn (Có thể chọn nhiều):</label>
+        <div class="checkbox-grid">
+            <label class="checkbox-item"><input type="checkbox" value="nang_tam"> Nặng tâm</label>
+            <label class="checkbox-item"><input type="checkbox" value="lo_dau"> Lố đầu</label>
+            <label class="checkbox-item"><input type="checkbox" value="giat_tam"> Giật tâm</label>
+            <label class="checkbox-item"><input type="checkbox" value="rung_tay"> Rung tay</label>
+            <label class="checkbox-item"><input type="checkbox" value="lac_dan"> Lạc đạn</label>
+            <label class="checkbox-item"><input type="checkbox" value="truot_dich"> Trượt địch</label>
+        </div>
     </div>
 
     <button onclick="tinhDoNhay()">TÍNH ĐỘ NHẠY NGHỆ</button>
@@ -227,47 +250,61 @@
 function tinhDoNhay() {
     let device = document.getElementById("device").value || "Thiết bị chung";
     let dpi = parseInt(document.getElementById("dpi").value) || 400;
-    let status = document.getElementById("status").value;
 
+    // Lấy danh sách các ô checkbox được chọn
+    let selectedBoxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]:checked');
+    let selectedStatuses = Array.from(selectedBoxes).map(cb => cb.value);
+
+    // Chỉ số gốc theo DPI
     let look = Math.max(60, Math.min(100, Math.round(100 - (dpi - 360) * 0.04)));
     let redDot = look - 5;
     let scope2x = look - 8;
     let scope4x = look - 15;
     let btnSize = 45;
-    let tip = "";
+    let tips = [];
 
-    switch(status) {
-        case "nang_tam":
-            look += 8; redDot += 7; btnSize = 42;
-            tip = "💡 Mẹo: Hạ nút bắn xuống thấp hơn và vuốt dứt khoát hơn.";
-            break;
-        case "lo_dau":
-            look -= 7; redDot -= 8; btnSize = 48;
-            tip = "💡 Mẹo: Tăng nút bắn to lên để hãm bớt lực vuốt.";
-            break;
-        case "giat_tam":
-            look -= 4; redDot -= 5; dpi = Math.max(360, dpi - 20);
-            tip = "💡 Mẹo: Giảm nhẹ DPI trên máy và vuốt nút bắn nhịp nhàng.";
-            break;
-        case "rung_tay":
-            look -= 6; redDot -= 6; btnSize = 50;
-            tip = "💡 Mẹo: Tăng nút bắn lên 50% làm điểm tựa cho ngón tay.";
-            break;
-        case "lac_dan":
-            redDot -= 4; scope2x -= 4;
-            tip = "💡 Mẹo: Đặt tâm ngang ngực địch rồi mới kéo, tránh nhấp liên tục.";
-            break;
-        case "truot_dich":
-            look += 5; redDot += 4;
-            tip = "💡 Mẹo: Giữ khoảng cách tầm trung và kéo tâm thẳng lên.";
-            break;
+    if (selectedStatuses.length === 0) {
+        tips.push("Mẹo: Hãy chọn ít nhất 1 tình trạng để máy tính tối ưu chuẩn nhất.");
     }
 
+    // Duyệt qua từng tình trạng được tích chọn để điều chỉnh thông số
+    selectedStatuses.forEach(status => {
+        switch(status) {
+            case "nang_tam":
+                look += 6; redDot += 5; btnSize -= 2;
+                tips.push("• **Nặng tâm:** Hạ nút bắn thấp xuống chút và vuốt lực mạnh hơn.");
+                break;
+            case "lo_dau":
+                look -= 5; redDot -= 6; btnSize += 3;
+                tips.push("• **Lố đầu:** Tăng nút bắn to lên để kìm lực kéo.");
+                break;
+            case "giat_tam":
+                look -= 3; redDot -= 4;
+                tips.push("• **Giật tâm:** Hạ nhẹ DPI trên hệ thống nếu còn bị nảy.");
+                break;
+            case "rung_tay":
+                look -= 4; redDot -= 4; btnSize += 4;
+                tips.push("• **Rung tay:** Tăng kích thước nút bắn làm điểm tựa ngón tay.");
+                break;
+            case "lac_dan":
+                redDot -= 3; scope2x -= 3;
+                tips.push("• **Lạc đạn:** Đặt tâm ngang ngực trước khi kéo, không nhấp sấy liên tục.");
+                break;
+            case "truot_dich":
+                look += 4; redDot += 3;
+                tips.push("• **Trượt địch:** Giữ khoảng cách tầm trung và kéo tâm thẳng đứng.");
+                break;
+        }
+    });
+
+    // Giới hạn trong khoảng 50 - 100 trong game
     look = Math.min(100, Math.max(50, look));
     redDot = Math.min(100, Math.max(50, redDot));
     scope2x = Math.min(100, Math.max(50, scope2x));
     scope4x = Math.min(100, Math.max(50, scope4x));
+    btnSize = Math.min(60, Math.max(40, btnSize));
 
+    // Xuất kết quả
     document.getElementById("resDevice").innerText = device;
     document.getElementById("resDpi").innerText = dpi;
     document.getElementById("resLook").innerText = look;
@@ -275,7 +312,7 @@ function tinhDoNhay() {
     document.getElementById("res2x").innerText = scope2x;
     document.getElementById("res4x").innerText = scope4x;
     document.getElementById("resButton").innerText = btnSize + "%";
-    document.getElementById("resTip").innerText = tip;
+    document.getElementById("resTip").innerHTML = tips.length > 0 ? tips.join("<br>") : "Đã tối ưu cấu hình mặc định!";
 
     document.getElementById("resultBox").style.display = "block";
 }
