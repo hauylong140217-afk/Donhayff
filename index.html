@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tối Ưu Độ Nhạy Free Fire Multi-Status</title>
+    <title>Tối Ưu Độ Nhạy Free Fire Pro Full</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -31,7 +31,7 @@
             border-radius: 20px;
             padding: 30px 25px;
             width: 100%;
-            max-width: 460px;
+            max-width: 480px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 71, 87, 0.15);
         }
 
@@ -82,7 +82,6 @@
             box-shadow: 0 0 10px rgba(255, 71, 87, 0.3);
         }
 
-        /* Styling cho danh sách Checkbox */
         .checkbox-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -202,11 +201,11 @@
 <body>
 
 <div class="container">
-    <div class="title">Độ Nhạy <span>FF Pro</span></div>
+    <div class="title">Độ Nhạy <span>FF Pro Max</span></div>
 
     <div class="input-group">
         <label for="device">Dòng Điện Thoại</label>
-        <input type="text" id="device" placeholder="VD: iPhone 11, Samsung A54...">
+        <input type="text" id="device" placeholder="VD: iPhone 11, Vivo, Samsung...">
     </div>
 
     <div class="input-group">
@@ -226,11 +225,11 @@
         </div>
     </div>
 
-    <button onclick="tinhDoNhay()">TÍNH ĐỘ NHẠY NGHỆ</button>
+    <button onclick="tinhDoNhay()">TÍNH ĐỘ NHẠY FULL ĐỎ</button>
 
     <div id="resultBox" class="result-card">
         <div class="result-header">
-            <div>Thành phần: <span id="resDevice"></span></div>
+            <div>Thiết bị: <span id="resDevice"></span></div>
             <div>DPI: <span id="resDpi"></span></div>
         </div>
 
@@ -239,6 +238,8 @@
             <div class="stat-item"><span class="stat-label">Red Dot Sight</span><span id="resRedDot" class="stat-val">0</span></div>
             <div class="stat-item"><span class="stat-label">Ống ngắm 2x</span><span id="res2x" class="stat-val">0</span></div>
             <div class="stat-item"><span class="stat-label">Ống ngắm 4x</span><span id="res4x" class="stat-val">0</span></div>
+            <div class="stat-item"><span class="stat-label">Ống ngắm Sniper</span><span id="resSniper" class="stat-val">0</span></div>
+            <div class="stat-item"><span class="stat-label">Nhìn tự do</span><span id="resFreeLook" class="stat-val">0</span></div>
             <div class="stat-item" style="grid-column: span 2;"><span class="stat-label">Kích thước nút bắn</span><span id="resButton" class="stat-val" style="color: #ff4757;">0%</span></div>
         </div>
 
@@ -251,57 +252,59 @@ function tinhDoNhay() {
     let device = document.getElementById("device").value || "Thiết bị chung";
     let dpi = parseInt(document.getElementById("dpi").value) || 400;
 
-    // Lấy danh sách các ô checkbox được chọn
     let selectedBoxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]:checked');
     let selectedStatuses = Array.from(selectedBoxes).map(cb => cb.value);
 
-    // Chỉ số gốc theo DPI
-    let look = Math.max(60, Math.min(100, Math.round(100 - (dpi - 360) * 0.04)));
-    let redDot = look - 5;
-    let scope2x = look - 8;
-    let scope4x = look - 15;
-    let btnSize = 45;
+    // Thuật toán tối ưu tỉ lệ đạn đỏ
+    let look = Math.max(65, Math.min(98, Math.round(100 - (dpi - 360) * 0.035)));
+    let redDot = look - 4;
+    let scope2x = look - 7;
+    let scope4x = look - 12;
+    let sniper = Math.max(35, Math.min(65, Math.round(60 - (dpi - 360) * 0.02)));
+    let freeLook = 50;
+    let btnSize = 44;
     let tips = [];
 
     if (selectedStatuses.length === 0) {
-        tips.push("Mẹo: Hãy chọn ít nhất 1 tình trạng để máy tính tối ưu chuẩn nhất.");
+        tips.push("• **Mẹo:** Nên tích chọn đúng tình trạng bạn hay gặp nhất để thuật toán chỉnh đạn gom đỏ tốt nhất.");
     }
 
-    // Duyệt qua từng tình trạng được tích chọn để điều chỉnh thông số
     selectedStatuses.forEach(status => {
         switch(status) {
             case "nang_tam":
-                look += 6; redDot += 5; btnSize -= 2;
-                tips.push("• **Nặng tâm:** Hạ nút bắn thấp xuống chút và vuốt lực mạnh hơn.");
+                look += 7; redDot += 6; btnSize -= 2;
+                tips.push("• **Nặng tâm:** Đặt nút bắn thấp xuống 5% so với vị trí cũ để tăng lực kéo.");
                 break;
             case "lo_dau":
-                look -= 5; redDot -= 6; btnSize += 3;
-                tips.push("• **Lố đầu:** Tăng nút bắn to lên để kìm lực kéo.");
+                look -= 6; redDot -= 7; btnSize += 3;
+                tips.push("• **Lố đầu:** Tăng kích thước nút bắn giúp kìm độ văng của đạn.");
                 break;
             case "giat_tam":
-                look -= 3; redDot -= 4;
-                tips.push("• **Giật tâm:** Hạ nhẹ DPI trên hệ thống nếu còn bị nảy.");
+                look -= 4; redDot -= 5; sniper -= 5;
+                tips.push("• **Giật tâm:** Vuốt nhẹ nút bắn theo nhịp ngắn, tránh kéo mạnh 1 lần.");
                 break;
             case "rung_tay":
-                look -= 4; redDot -= 4; btnSize += 4;
-                tips.push("• **Rung tay:** Tăng kích thước nút bắn làm điểm tựa ngón tay.");
+                look -= 5; redDot -= 5; btnSize += 4; freeLook -= 10;
+                tips.push("• **Rung tay:** Tăng nút bắn to giúp điểm tựa ngón tay vững hơn.");
                 break;
             case "lac_dan":
-                redDot -= 3; scope2x -= 3;
-                tips.push("• **Lạc đạn:** Đặt tâm ngang ngực trước khi kéo, không nhấp sấy liên tục.");
+                redDot -= 4; scope2x -= 4; scope4x -= 4;
+                tips.push("• **Lạc đạn:** Đặt tâm súng ngang ngực địch rồi mới nhấn vuốt thẳng.");
                 break;
             case "truot_dich":
-                look += 4; redDot += 3;
-                tips.push("• **Trượt địch:** Giữ khoảng cách tầm trung và kéo tâm thẳng đứng.");
+                look += 5; redDot += 4; sniper += 5;
+                tips.push("• **Trượt địch:** Giữ khoảng cách tầm trung và kéo tâm theo đường thẳng.");
                 break;
         }
     });
 
-    // Giới hạn trong khoảng 50 - 100 trong game
+    // Giới hạn trong khoảng chuẩn game
     look = Math.min(100, Math.max(50, look));
     redDot = Math.min(100, Math.max(50, redDot));
     scope2x = Math.min(100, Math.max(50, scope2x));
     scope4x = Math.min(100, Math.max(50, scope4x));
+    sniper = Math.min(100, Math.max(20, sniper));
+    freeLook = Math.min(100, Math.max(20, freeLook));
     btnSize = Math.min(60, Math.max(40, btnSize));
 
     // Xuất kết quả
@@ -311,8 +314,10 @@ function tinhDoNhay() {
     document.getElementById("resRedDot").innerText = redDot;
     document.getElementById("res2x").innerText = scope2x;
     document.getElementById("res4x").innerText = scope4x;
+    document.getElementById("resSniper").innerText = sniper;
+    document.getElementById("resFreeLook").innerText = freeLook;
     document.getElementById("resButton").innerText = btnSize + "%";
-    document.getElementById("resTip").innerHTML = tips.length > 0 ? tips.join("<br>") : "Đã tối ưu cấu hình mặc định!";
+    document.getElementById("resTip").innerHTML = tips.length > 0 ? tips.join("<br>") : "Đã tối ưu thông số cho tỉ lệ bắn đỏ tối đa!";
 
     document.getElementById("resultBox").style.display = "block";
 }
