@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tối Ưu Độ Nhạy Free Fire 200 Full Red</title>
+    <title>Tối Ưu Độ Nhạy FF - Full Model Check</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -147,6 +147,17 @@
             animation: fadeIn 0.4s ease-in-out;
         }
 
+        .error-card {
+            background: rgba(255, 71, 87, 0.15);
+            border: 1px solid #ff4757;
+            color: #ff6b81;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -195,12 +206,12 @@
 
         .tip-box {
             margin-top: 15px;
-            background: rgba(255, 171, 0, 0.1);
-            border-left: 3px solid #ffab00;
+            background: rgba(255, 71, 87, 0.1);
+            border-left: 3px solid #ff4757;
             padding: 10px 12px;
             border-radius: 0 8px 8px 0;
             font-size: 12px;
-            color: #eccc68;
+            color: #ff6b81;
             line-height: 1.5;
         }
     </style>
@@ -208,11 +219,11 @@
 <body>
 
 <div class="container">
-    <div class="title">Độ Nhạy <span>FF Max 200</span></div>
+    <div class="title">Độ Nhạy <span>FF Full Red</span></div>
 
     <div class="input-group">
-        <label for="device">Dòng Điện Thoại</label>
-        <input type="text" id="device" placeholder="VD: Vivo, iPhone, Samsung...">
+        <label for="device">Tên Tên Máy Đầy Đủ</label>
+        <input type="text" id="device" placeholder="VD: Samsung Galaxy Tab S9 FE, iPhone 15 Pro Max...">
     </div>
 
     <div class="input-group">
@@ -233,29 +244,25 @@
         </div>
     </div>
 
-    <button onclick="tinhDoNhay()">TÍNH ĐỘ NHẠY FULL ĐỎ (0-200)</button>
+    <button onclick="tinhDoNhay()">KÍCH HOẠT CHẾ ĐỘ FULL RED</button>
 
-    <div id="resultBox" class="result-card">
-        <div class="result-header">
-            <div>Thiết bị: <span id="resDevice"></span></div>
-            <div>DPI: <span id="resDpi"></span></div>
-        </div>
-
-        <div class="stat-grid">
-            <div class="stat-item"><span class="stat-label">Nhìn xung quanh</span><span id="resLook" class="stat-val">0</span></div>
-            <div class="stat-item"><span class="stat-label">Red Dot Sight</span><span id="resRedDot" class="stat-val">0</span></div>
-            <div class="stat-item"><span class="stat-label">Ống ngắm 2x</span><span id="res2x" class="stat-val">0</span></div>
-            <div class="stat-item"><span class="stat-label">Ống ngắm 4x</span><span id="res4x" class="stat-val">0</span></div>
-            <div class="stat-item"><span class="stat-label">Ống ngắm Sniper</span><span id="resSniper" class="stat-val">0</span></div>
-            <div class="stat-item"><span class="stat-label">Nhìn tự do</span><span id="resFreeLook" class="stat-val">0</span></div>
-            <div class="stat-item" style="grid-column: span 2;"><span class="stat-label">Kích thước nút bắn</span><span id="resButton" class="stat-val" style="color: #ff4757;">0%</span></div>
-        </div>
-
-        <div id="resTip" class="tip-box"></div>
-    </div>
+    <div id="resultBox" class="result-card"></div>
 </div>
 
 <script>
+// Danh sách các hãng máy
+const validBrands = [
+    "samsung", "apple", "iphone", "ipad", "vivo", "xiaomi", "redmi", "poco", 
+    "oppo", "realme", "asus", "rog", "iqoo", "tecno", "infinix", "huawei", 
+    "honor", "oneplus", "google", "pixel", "sony", "lenovo"
+];
+
+// Từ khóa định danh model hợp lệ
+const validModels = [
+    "galaxy", "tab", "fe", "note", "ultra", "plus", "pro", "max", "mini", 
+    "pad", "fold", "flip", "series", "neo", "magic", "number", "gaming", "s9", "s8", "s10", "s21", "s22", "s23", "s24"
+];
+
 window.onload = function() {
     let ratio = window.devicePixelRatio || 1;
     let estimatedDpi = Math.round(320 * ratio);
@@ -263,85 +270,90 @@ window.onload = function() {
 };
 
 function tinhDoNhay() {
-    let device = document.getElementById("device").value || "Thiết bị chung";
-    let dpi = parseInt(document.getElementById("dpi").value) || 400;
+    let inputDevice = document.getElementById("device").value.trim();
+    let resultBox = document.getElementById("resultBox");
 
+    if (!inputDevice) {
+        resultBox.className = "result-card error-card";
+        resultBox.innerHTML = "⚠️ Vui lòng nhập tên điện thoại hoặc máy tính bảng!";
+        resultBox.style.display = "block";
+        return;
+    }
+
+    let lowerInput = inputDevice.toLowerCase();
+
+    // Kiếm tra xem có tên Hãng trong input không
+    let hasBrand = validBrands.some(brand => lowerInput.includes(brand));
+    
+    // Kiểm tra xem có ký tự số (dòng máy) hoặc từ khóa model không
+    let hasNumberOrModel = /\d/.test(lowerInput) || validModels.some(model => lowerInput.includes(model));
+
+    // Nếu không khớp hãng HOẶC thiếu tên dòng máy cụ thể
+    if (!hasBrand || !hasNumberOrModel) {
+        resultBox.className = "result-card error-card";
+        resultBox.innerHTML = "❌ Điện thoại không tồn tại trong hệ thống! Vui lòng nhập đầy đủ tên máy (VD: Samsung Galaxy Tab S9 FE, Vivo Y20...)";
+        resultBox.style.display = "block";
+        return;
+    }
+
+    let dpi = parseInt(document.getElementById("dpi").value) || 400;
     let selectedBoxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]:checked');
     let selectedStatuses = Array.from(selectedBoxes).map(cb => cb.value);
 
-    // Điểm gốc tối ưu cho thang 0 - 200
-    let look = 180;
-    let redDot = 175;
-    let scope2x = 165;
-    let scope4x = 150;
-    let sniper = 110;
+    // Tối ưu riêng cho Màn hình lớn/Máy tính bảng (Tab/Pad)
+    let isTablet = lowerInput.includes("tab") || lowerInput.includes("pad") || lowerInput.includes("ipad");
+    
+    let look = isTablet ? 185 : 195;
+    let redDot = isTablet ? 180 : 190;
+    let scope2x = isTablet ? 170 : 180;
+    let scope4x = isTablet ? 155 : 165;
+    let sniper = 120;
     let freeLook = 100;
-    let btnSize = 42;
-    let tips = [];
+    let btnSize = isTablet ? 45 : 38;
 
-    // Nếu chọn tất cả 6 ô, kích hoạt thuật toán Chống Triệt Tiêu (Cân Bằng Đỏ)
-    if (selectedStatuses.length === 6) {
-        look = 172;
-        redDot = 168;
-        scope2x = 158;
-        scope4x = 142;
-        sniper = 100;
-        btnSize = 40;
-        tips.push("🔥 **Đã tối ưu chế độ Tổng Hợp:** Bạn tích chọn cả 6 ô, thuật toán đã tự cân bằng lại để tránh bị văng đạn vàng. Hãy hạ nút bắn xuống thấp thêm một chút nữa nhé!");
-    } else if (selectedStatuses.length === 0) {
-        tips.push("• **Mẹo:** Bạn nên tích 1-2 lỗi chính mình hay gặp nhất để kết quả chuẩn nhất.");
-    } else {
-        selectedStatuses.forEach(status => {
-            switch(status) {
-                case "nang_tam":
-                    look += 10; redDot += 8; btnSize -= 2;
-                    tips.push("• **Nặng tâm:** Hạ vị trí nút bắn xuống thấp hơn 5% trên màn hình.");
-                    break;
-                case "lo_dau":
-                    look -= 12; redDot -= 12; btnSize += 3;
-                    tips.push("• **Lố đầu:** Tăng kích thước nút bắn để kìm lực vuốt.");
-                    break;
-                case "giat_tam":
-                    look -= 8; redDot -= 8; sniper -= 8;
-                    tips.push("• **Giật tâm:** Kéo nút bắn nhẹ nhàng theo nhịp ngắn.");
-                    break;
-                case "rung_tay":
-                    look -= 6; redDot -= 6; btnSize += 4; freeLook -= 15;
-                    tips.push("• **Rung tay:** Tăng nút bắn to giúp giữ vững điểm tựa ngón tay.");
-                    break;
-                case "lac_dan":
-                    redDot -= 6; scope2x -= 6; scope4x -= 6;
-                    tips.push("• **Lạc đạn:** Đặt tâm súng ngang ngực địch rồi mới vuốt thẳng.");
-                    break;
-                case "truot_dich":
-                    look += 8; redDot += 6; sniper += 8;
-                    tips.push("• **Trượt địch:** Giữ khoảng cách tầm trung và kéo tâm thẳng đứng.");
-                    break;
-            }
-        });
+    if (selectedStatuses.includes("lo_dau") || selectedStatuses.includes("giat_tam")) {
+        look -= 10;
+        redDot -= 10;
+        btnSize += 2;
     }
 
-    // Giới hạn trong khoảng chuẩn 0 - 200
+    if (selectedStatuses.includes("nang_tam") || selectedStatuses.includes("truot_dich")) {
+        look = 200;
+        redDot = 198;
+        btnSize -= 2;
+    }
+
     look = Math.min(200, Math.max(0, look));
     redDot = Math.min(200, Math.max(0, redDot));
     scope2x = Math.min(200, Math.max(0, scope2x));
     scope4x = Math.min(200, Math.max(0, scope4x));
     sniper = Math.min(200, Math.max(0, sniper));
-    freeLook = Math.min(200, Math.max(0, freeLook));
-    btnSize = Math.min(60, Math.max(38, btnSize));
 
-    document.getElementById("resDevice").innerText = device;
-    document.getElementById("resDpi").innerText = dpi;
-    document.getElementById("resLook").innerText = look;
-    document.getElementById("resRedDot").innerText = redDot;
-    document.getElementById("res2x").innerText = scope2x;
-    document.getElementById("res4x").innerText = scope4x;
-    document.getElementById("resSniper").innerText = sniper;
-    document.getElementById("resFreeLook").innerText = freeLook;
-    document.getElementById("resButton").innerText = btnSize + "%";
-    document.getElementById("resTip").innerHTML = tips.join("<br>");
+    resultBox.className = "result-card";
+    resultBox.innerHTML = `
+        <div class="result-header">
+            <div>Thiết bị: <span>${inputDevice}</span></div>
+            <div>DPI: <span>${dpi}</span></div>
+        </div>
 
-    document.getElementById("resultBox").style.display = "block";
+        <div class="stat-grid">
+            <div class="stat-item"><span class="stat-label">Nhìn xung quanh</span><span class="stat-val">${look}</span></div>
+            <div class="stat-item"><span class="stat-label">Red Dot Sight</span><span class="stat-val">${redDot}</span></div>
+            <div class="stat-item"><span class="stat-label">Ống ngắm 2x</span><span class="stat-val">${scope2x}</span></div>
+            <div class="stat-item"><span class="stat-label">Ống ngắm 4x</span><span class="stat-val">${scope4x}</span></div>
+            <div class="stat-item"><span class="stat-label">Ống ngắm Sniper</span><span class="stat-val">${sniper}</span></div>
+            <div class="stat-item"><span class="stat-label">Nhìn tự do</span><span class="stat-val">${freeLook}</span></div>
+            <div class="stat-item" style="grid-column: span 2;"><span class="stat-label">Kích thước nút bắn</span><span class="stat-val" style="color: #ff4757;">${btnSize}%</span></div>
+        </div>
+
+        <div class="tip-box">
+            🎯 <b>Mẹo thoát máu vàng cho ${inputDevice}:</b><br>
+            1. Đặt kích thước nút bắn ở mức <b>${btnSize}%</b> và kéo sát xuống cạnh dưới.<br>
+            2. Màn hình tablet/điện thoại lớn nên vuốt lực vừa phải, đặt tâm ngang tầm ngực địch trước khi kéo.
+        </div>
+    `;
+
+    resultBox.style.display = "block";
 }
 </script>
 
