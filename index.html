@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tối Ưu Độ Nhạy Free Fire Auto</title>
+    <title>Tối Ưu Độ Nhạy Free Fire Auto - All Gun</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -65,7 +65,7 @@
             letter-spacing: 0.5px;
         }
 
-        input[type="text"], input[type="number"] {
+        input[type="text"], input[type="number"], select {
             width: 100%;
             padding: 12px 16px;
             background: #161d24;
@@ -77,7 +77,12 @@
             transition: all 0.3s ease;
         }
 
-        input[type="text"]:focus, input[type="number"]:focus {
+        select option {
+            background: #161d24;
+            color: #fff;
+        }
+
+        input[type="text"]:focus, input[type="number"]:focus, select:focus {
             border-color: #ff4757;
             box-shadow: 0 0 10px rgba(255, 71, 87, 0.3);
         }
@@ -181,7 +186,7 @@
             border-bottom: 1px solid #2f3542;
             padding-bottom: 10px;
             margin-bottom: 12px;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .result-header span {
@@ -235,8 +240,21 @@
 
     <!-- TỰ ĐỘNG PHÁT HIỆN ĐIỆN THOẠI -->
     <div class="input-group">
-        <label for="device">Tên Dòng Máy <span class="auto-tag">⚡ Đã tự nhận diện</span></label>
+        <label for="device">Tên Dòng Máy <span class="auto-tag">⚡ Tự động nhận</span></label>
         <input type="text" id="device" placeholder="Đang nhận diện thiết bị...">
+    </div>
+
+    <!-- MỤC CHỌN LOẠI SÚNG -->
+    <div class="input-group">
+        <label for="gunType">Chọn Loại Súng Cần Bắn</label>
+        <select id="gunType">
+            <option value="all">🔥 Tất Cả Loại Súng (Cân Bằng)</option>
+            <option value="m1887">💥 M1887 / Shotgun (Vuốt Cự Ly Gần)</option>
+            <option value="smg">⚡ MP40 / MP5 / Thompson (Sấy Tốc Độ)</option>
+            <option value="m590">🛡️ M1014 / M590 / MAG-7 (Xả Đạn Nhanh)</option>
+            <option value="ar">🎯 Súng Trường (AK, M4A1, GROZA, Scar)</option>
+            <option value="one_shot">☠️ Desert Eagle / Woodpecker (One Shot)</option>
+        </select>
     </div>
 
     <div class="input-group">
@@ -263,7 +281,6 @@
 </div>
 
 <script>
-// Danh sách các HÃNG hỗ trợ kiểm tra
 const brandList = [
     "vivo", "samsung", "iphone", "ipad", "xiaomi", "redmi", "poco", 
     "oppo", "realme", "asus", "rog", "iqoo", "tecno", "infinix", 
@@ -271,11 +288,10 @@ const brandList = [
 ];
 
 window.onload = function() {
-    // 1. Tự động nhận diện thiết bị qua User Agent
     let ua = navigator.userAgent.toLowerCase();
     let detectedDevice = "Thiết bị Android / iOS";
 
-    if (ua.includes("vivo")) detectedDevice = "Vivo (Đã phát hiện)";
+    if (ua.includes("vivo")) detectedDevice = "Vivo";
     else if (ua.includes("samsung")) detectedDevice = "Samsung Galaxy";
     else if (ua.includes("iphone")) detectedDevice = "iPhone";
     else if (ua.includes("ipad")) detectedDevice = "iPad (Tablet)";
@@ -287,7 +303,6 @@ window.onload = function() {
 
     document.getElementById("device").value = detectedDevice;
 
-    // 2. Tự động tính DPI màn hình
     let ratio = window.devicePixelRatio || 1;
     let estimatedDpi = Math.round(320 * ratio);
     document.getElementById("dpi").value = estimatedDpi;
@@ -295,6 +310,7 @@ window.onload = function() {
 
 function tinhDoNhay() {
     let inputDevice = document.getElementById("device").value.trim();
+    let gunType = document.getElementById("gunType").value;
     let resultBox = document.getElementById("resultBox");
 
     if (!inputDevice) {
@@ -305,8 +321,6 @@ function tinhDoNhay() {
     }
 
     let lowerInput = inputDevice.toLowerCase();
-
-    // Kiểm tra tính hợp lệ của thiết bị
     let isValidBrand = brandList.some(brand => lowerInput.includes(brand)) || lowerInput.includes("thiết bị") || lowerInput.includes("android") || lowerInput.includes("ios");
     
     if (!isValidBrand) {
@@ -320,9 +334,9 @@ function tinhDoNhay() {
     let selectedBoxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]:checked');
     let selectedStatuses = Array.from(selectedBoxes).map(cb => cb.value);
 
-    // Tối ưu thông số cho Tablet / Màn hình lớn
     let isTablet = lowerInput.includes("tab") || lowerInput.includes("pad") || lowerInput.includes("ipad");
-    
+
+    // Chỉ số mặc định
     let look = isTablet ? 185 : 195;
     let redDot = isTablet ? 180 : 190;
     let scope2x = isTablet ? 170 : 180;
@@ -330,17 +344,58 @@ function tinhDoNhay() {
     let sniper = 120;
     let freeLook = 100;
     let btnSize = isTablet ? 45 : 38;
+    let gunTip = "";
 
+    // Điều chỉnh theo từng loại súng
+    switch (gunType) {
+        case "m1887":
+            look = 200;
+            redDot = 195;
+            btnSize = isTablet ? 42 : 35; // Nút bắn nhỏ dễ vuốt chữ J cận chiến
+            gunTip = "<b>M1887 / Shotgun:</b> Đặt tâm trắng ngang cổ hoặc cạnh bên hông địch, nhấn vuốt phím bắn nhanh theo hình chữ <b>J</b> dứt khoát.";
+            break;
+        case "smg": // MP40, MP5
+            look = 190;
+            redDot = 188;
+            btnSize = isTablet ? 46 : 40; 
+            gunTip = "<b>MP40 / MP5 / SMG:</b> Đặt tâm sát bên dưới chân hoặc ngang ngực, nhấp nhẹ phím bắn vuốt thẳng đứng để ghìm tâm đỏ đầu.";
+            break;
+        case "m590": // M1014, M590
+            look = 198;
+            redDot = 192;
+            btnSize = isTablet ? 44 : 36;
+            gunTip = "<b>M1014 / M590:</b> Cần kéo nhịp nhàng từng viên, vuốt nút bắn từ dưới kéo mạnh thẳng lên đỉnh màn hình.";
+            break;
+        case "one_shot": // Desert Eagle
+            look = 200;
+            redDot = 200;
+            btnSize = isTablet ? 40 : 34;
+            gunTip = "<b>Desert Eagle / One Shot:</b> Nút bắn nhỏ giúp kéo tâm bay cực nhanh. Vuốt nút bắn hình chữ <b>U</b> hoặc vẩy thẳng đứng.";
+            break;
+        case "ar": // Súng trường
+            look = 185;
+            redDot = 180;
+            scope2x = 175;
+            scope4x = 160;
+            btnSize = isTablet ? 48 : 42;
+            gunTip = "<b>Súng Trường (AK, M4A1):</b> Giữ nhịp bắn 3-4 viên nhả một lần để đạn không bị xòe, nút bắn to hơn giúp ghìm tâm cực đầm.";
+            break;
+        default: // Tất cả súng
+            gunTip = "<b>Cân Bằng Tất Cả Súng:</b> Hạ nút bắn sát cạnh đáy màn hình. Đặt tâm màu trắng ngang cổ địch rồi vuốt dứt khoát lên.";
+            break;
+    }
+
+    // Tự động tối ưu theo tình trạng lỗi bắn
     if (selectedStatuses.includes("lo_dau") || selectedStatuses.includes("giat_tam")) {
-        look -= 10;
-        redDot -= 10;
+        look -= 8;
+        redDot -= 8;
         btnSize += 2;
     }
 
     if (selectedStatuses.includes("nang_tam") || selectedStatuses.includes("truot_dich")) {
         look = 200;
         redDot = 198;
-        btnSize -= 2;
+        btnSize = Math.max(30, btnSize - 2);
     }
 
     look = Math.min(200, Math.max(0, look));
@@ -367,9 +422,9 @@ function tinhDoNhay() {
         </div>
 
         <div class="tip-box">
-            🎯 <b>Mẹo vuốt tâm full red cho ${inputDevice}:</b><br>
-            1. Hạ kích thước nút bắn xuống <b>${btnSize}%</b> và đặt sát cạnh dưới màn hình.<br>
-            2. Đặt tâm ngang ngực địch rồi mới kéo dứt khoát thẳng lên.
+            🎯 <b>Mẹo Kéo Tâm Chuẩn:</b><br>
+            1. Đặt kích thước nút bắn <b>${btnSize}%</b> và kéo nằm ở phần dưới cùng màn hình.<br>
+            2. ${gunTip}
         </div>
     `;
 
