@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tối Ưu Độ Nhạy Free Fire</title>
+    <title>Tối Ưu Độ Nhạy Free Fire Auto</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -82,62 +82,23 @@
             box-shadow: 0 0 10px rgba(255, 71, 87, 0.3);
         }
 
+        .auto-tag {
+            display: inline-block;
+            font-size: 11px;
+            background: rgba(46, 213, 115, 0.2);
+            color: #2ed573;
+            border: 1px solid #2ed573;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 6px;
+            text-transform: none;
+        }
+
         .note-text {
             font-size: 11px;
             color: #ffaa00;
             margin-top: 6px;
             display: block;
-        }
-
-        .btn-main {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #ff4757, #ff6b81);
-            border: none;
-            border-radius: 10px;
-            color: #fff;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            cursor: pointer;
-            margin-top: 5px;
-            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
-            transition: all 0.3s ease;
-        }
-
-        .btn-main:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.6);
-        }
-
-        .status-msg {
-            margin-top: 12px;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 500;
-            display: none;
-            text-align: center;
-        }
-
-        .status-success {
-            background: rgba(46, 213, 115, 0.15);
-            border: 1px solid #2ed573;
-            color: #2ed573;
-        }
-
-        .status-error {
-            background: rgba(255, 71, 87, 0.15);
-            border: 1px solid #ff4757;
-            color: #ff6b81;
-        }
-
-        #sensitivitySection {
-            display: none;
-            margin-top: 20px;
-            border-top: 1px dashed #2f3542;
-            padding-top: 20px;
         }
 
         .checkbox-grid {
@@ -166,6 +127,28 @@
             cursor: pointer;
         }
 
+        .btn-main {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #ff4757, #ff6b81);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.6);
+        }
+
         .result-card {
             display: none;
             margin-top: 25px;
@@ -174,6 +157,17 @@
             padding: 20px;
             border: 1px solid #2f3542;
             animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .error-card {
+            background: rgba(255, 71, 87, 0.15);
+            border: 1px solid #ff4757;
+            color: #ff6b81;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
         }
 
         @keyframes fadeIn {
@@ -239,124 +233,94 @@
 <div class="container">
     <div class="title">Độ Nhạy <span>FF Full Red</span></div>
 
-    <!-- BƯỚC 1: NHẬP VÀ TÌM ĐIỆN THOẠI -->
+    <!-- TỰ ĐỘNG PHÁT HIỆN ĐIỆN THOẠI -->
     <div class="input-group">
-        <label for="device">Tên Tên Máy Đầy Đủ</label>
-        <input type="text" id="device" placeholder="VD: Samsung Galaxy Tab S9 FE, Vivo Y20...">
-        <button class="btn-main" onclick="timDienThoai()">TÌM ĐIỆN THOẠI</button>
-        <div id="deviceStatus" class="status-msg"></div>
+        <label for="device">Tên Dòng Máy <span class="auto-tag">⚡ Đã tự nhận diện</span></label>
+        <input type="text" id="device" placeholder="Đang nhận diện thiết bị...">
     </div>
 
-    <!-- BƯỚC 2: TÍNH ĐỘ NHẠY (ẨN BAN ĐẦU) -->
-    <div id="sensitivitySection">
-        <div class="input-group">
-            <label for="dpi">Chỉ Số DPI</label>
-            <input type="number" id="dpi" placeholder="Nhập DPI thực tế">
-            <span class="note-text">⚠️ Hệ thống dpi có sai sót vui lòng chỉnh lại một chút</span>
-        </div>
-
-        <div class="input-group">
-            <label>Chọn Tình Trạng Khi Bắn:</label>
-            <div class="checkbox-grid">
-                <label class="checkbox-item"><input type="checkbox" value="nang_tam"> Nặng tâm</label>
-                <label class="checkbox-item"><input type="checkbox" value="lo_dau"> Lố đầu</label>
-                <label class="checkbox-item"><input type="checkbox" value="giat_tam"> Giật tâm</label>
-                <label class="checkbox-item"><input type="checkbox" value="rung_tay"> Rung tay</label>
-                <label class="checkbox-item"><input type="checkbox" value="lac_dan"> Lạc đạn</label>
-                <label class="checkbox-item"><input type="checkbox" value="truot_dich"> Trượt địch</label>
-            </div>
-        </div>
-
-        <button class="btn-main" onclick="tinhDoNhay()">KÍCH HOẠT CHẾ ĐỘ FULL RED</button>
-
-        <div id="resultBox" class="result-card"></div>
+    <div class="input-group">
+        <label for="dpi">Chỉ Số DPI</label>
+        <input type="number" id="dpi" placeholder="Nhập DPI thực tế">
+        <span class="note-text">⚠️ Hệ thống dpi có sai sót vui lòng chỉnh lại một chút</span>
     </div>
+
+    <div class="input-group">
+        <label>Chọn Tình Trạng Khi Bắn:</label>
+        <div class="checkbox-grid">
+            <label class="checkbox-item"><input type="checkbox" value="nang_tam"> Nặng tâm</label>
+            <label class="checkbox-item"><input type="checkbox" value="lo_dau"> Lố đầu</label>
+            <label class="checkbox-item"><input type="checkbox" value="giat_tam"> Giật tâm</label>
+            <label class="checkbox-item"><input type="checkbox" value="rung_tay"> Rung tay</label>
+            <label class="checkbox-item"><input type="checkbox" value="lac_dan"> Lạc đạn</label>
+            <label class="checkbox-item"><input type="checkbox" value="truot_dich"> Trượt địch</label>
+        </div>
+    </div>
+
+    <button class="btn-main" onclick="tinhDoNhay()">KÍCH HOẠT CHẾ ĐỘ FULL RED</button>
+
+    <div id="resultBox" class="result-card"></div>
 </div>
 
 <script>
-// Danh sách các hãng máy hỗ trợ
-const brandMap = {
-    "samsung": "Samsung",
-    "apple": "Apple",
-    "iphone": "Apple",
-    "ipad": "Apple",
-    "vivo": "Vivo",
-    "xiaomi": "Xiaomi",
-    "redmi": "Xiaomi",
-    "poco": "Xiaomi",
-    "oppo": "OPPO",
-    "realme": "Realme",
-    "asus": "ASUS",
-    "rog": "ASUS",
-    "iqoo": "iQOO",
-    "tecno": "Tecno",
-    "infinix": "Infinix",
-    "huawei": "Huawei",
-    "honor": "Honor",
-    "oneplus": "OnePlus",
-    "google": "Google",
-    "pixel": "Google",
-    "sony": "Sony",
-    "lenovo": "Lenovo"
-};
-
-const validModels = [
-    "galaxy", "tab", "fe", "note", "ultra", "plus", "pro", "max", "mini", 
-    "pad", "fold", "flip", "series", "neo", "magic", "number", "gaming", 
-    "s9", "s8", "s10", "s21", "s22", "s23", "s24", "y20", "y21", "y15", "v20", "v23"
+// Danh sách các HÃNG hỗ trợ kiểm tra
+const brandList = [
+    "vivo", "samsung", "iphone", "ipad", "xiaomi", "redmi", "poco", 
+    "oppo", "realme", "asus", "rog", "iqoo", "tecno", "infinix", 
+    "huawei", "honor", "oneplus", "pixel", "sony"
 ];
 
-let currentConfirmedDevice = "";
-
 window.onload = function() {
+    // 1. Tự động nhận diện thiết bị qua User Agent
+    let ua = navigator.userAgent.toLowerCase();
+    let detectedDevice = "Thiết bị Android / iOS";
+
+    if (ua.includes("vivo")) detectedDevice = "Vivo (Đã phát hiện)";
+    else if (ua.includes("samsung")) detectedDevice = "Samsung Galaxy";
+    else if (ua.includes("iphone")) detectedDevice = "iPhone";
+    else if (ua.includes("ipad")) detectedDevice = "iPad (Tablet)";
+    else if (ua.includes("xiaomi") || ua.includes("redmi")) detectedDevice = "Xiaomi / Redmi";
+    else if (ua.includes("oppo")) detectedDevice = "OPPO";
+    else if (ua.includes("realme")) detectedDevice = "Realme";
+    else if (ua.includes("huawei")) detectedDevice = "Huawei";
+    else if (ua.includes("android")) detectedDevice = "Thiết bị Android";
+
+    document.getElementById("device").value = detectedDevice;
+
+    // 2. Tự động tính DPI màn hình
     let ratio = window.devicePixelRatio || 1;
     let estimatedDpi = Math.round(320 * ratio);
     document.getElementById("dpi").value = estimatedDpi;
 };
 
-function timDienThoai() {
+function tinhDoNhay() {
     let inputDevice = document.getElementById("device").value.trim();
-    let statusMsg = document.getElementById("deviceStatus");
-    let sensSection = document.getElementById("sensitivitySection");
     let resultBox = document.getElementById("resultBox");
 
-    resultBox.style.display = "none";
-
     if (!inputDevice) {
-        statusMsg.className = "status-msg status-error";
-        statusMsg.innerText = "❌ Vui lòng nhập tên điện thoại!";
-        statusMsg.style.display = "block";
-        sensSection.style.display = "none";
+        resultBox.className = "result-card error-card";
+        resultBox.innerHTML = "⚠️ Vui lòng nhập tên dòng điện thoại!";
+        resultBox.style.display = "block";
         return;
     }
 
     let lowerInput = inputDevice.toLowerCase();
-    let foundBrandKey = Object.keys(brandMap).find(key => lowerInput.includes(key));
-    let hasNumberOrModel = /\d/.test(lowerInput) || validModels.some(model => lowerInput.includes(model));
 
-    if (foundBrandKey && hasNumberOrModel) {
-        let detectedBrand = brandMap[foundBrandKey];
-        currentConfirmedDevice = inputDevice;
-        
-        statusMsg.className = "status-msg status-success";
-        statusMsg.innerText = `✅ Máy [${inputDevice}] có trong hãng [${detectedBrand}]`;
-        statusMsg.style.display = "block";
-        
-        sensSection.style.display = "block";
-    } else {
-        statusMsg.className = "status-msg status-error";
-        statusMsg.innerText = "❌ Điện thoại không tồn tại";
-        statusMsg.style.display = "block";
-        sensSection.style.display = "none";
+    // Kiểm tra tính hợp lệ của thiết bị
+    let isValidBrand = brandList.some(brand => lowerInput.includes(brand)) || lowerInput.includes("thiết bị") || lowerInput.includes("android") || lowerInput.includes("ios");
+    
+    if (!isValidBrand) {
+        resultBox.className = "result-card error-card";
+        resultBox.innerHTML = "❌ Điện thoại không tồn tại trong hệ thống!";
+        resultBox.style.display = "block";
+        return;
     }
-}
 
-function tinhDoNhay() {
     let dpi = parseInt(document.getElementById("dpi").value) || 400;
     let selectedBoxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]:checked');
     let selectedStatuses = Array.from(selectedBoxes).map(cb => cb.value);
-    let lowerInput = currentConfirmedDevice.toLowerCase();
 
+    // Tối ưu thông số cho Tablet / Màn hình lớn
     let isTablet = lowerInput.includes("tab") || lowerInput.includes("pad") || lowerInput.includes("ipad");
     
     let look = isTablet ? 185 : 195;
@@ -385,10 +349,10 @@ function tinhDoNhay() {
     scope4x = Math.min(200, Math.max(0, scope4x));
     sniper = Math.min(200, Math.max(0, sniper));
 
-    let resultBox = document.getElementById("resultBox");
+    resultBox.className = "result-card";
     resultBox.innerHTML = `
         <div class="result-header">
-            <div>Thiết bị: <span>${currentConfirmedDevice}</span></div>
+            <div>Thiết bị: <span>${inputDevice}</span></div>
             <div>DPI: <span>${dpi}</span></div>
         </div>
 
@@ -403,9 +367,9 @@ function tinhDoNhay() {
         </div>
 
         <div class="tip-box">
-            🎯 <b>Mẹo thoát máu vàng cho ${currentConfirmedDevice}:</b><br>
-            1. Đặt kích thước nút bắn ở mức <b>${btnSize}%</b> và kéo sát xuống cạnh dưới.<br>
-            2. Đặt tâm ngang tầm ngực/cổ địch trước khi bấm vuốt thẳng lên.
+            🎯 <b>Mẹo vuốt tâm full red cho ${inputDevice}:</b><br>
+            1. Hạ kích thước nút bắn xuống <b>${btnSize}%</b> và đặt sát cạnh dưới màn hình.<br>
+            2. Đặt tâm ngang ngực địch rồi mới kéo dứt khoát thẳng lên.
         </div>
     `;
 
