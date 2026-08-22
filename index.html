@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tối Ưu Độ Nhạy Free Fire Auto - All Gun</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Tối Ưu Độ Nhạy FF - Ultra Auto Headshot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -14,8 +14,8 @@
         }
 
         body {
-            background: #0d0f12;
-            background-image: radial-gradient(circle at 50% 0%, #2a0845 0%, #0d0f12 70%);
+            background: #090a0f;
+            background-image: radial-gradient(circle at 50% 0%, #3a0007 0%, #090a0f 80%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -25,42 +25,42 @@
         }
 
         .container {
-            background: rgba(22, 27, 34, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 71, 87, 0.3);
+            background: rgba(18, 20, 29, 0.9);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 42, 60, 0.4);
             border-radius: 20px;
             padding: 30px 25px;
             width: 100%;
             max-width: 480px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 71, 87, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 42, 60, 0.25);
         }
 
         .title {
             font-family: 'Orbitron', sans-serif;
             text-align: center;
-            font-size: 22px;
-            font-weight: 800;
+            font-size: 21px;
+            font-weight: 900;
             color: #fff;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 25px;
-            text-shadow: 0 0 10px rgba(255, 71, 87, 0.6);
+            letter-spacing: 1px;
+            margin-bottom: 22px;
+            text-shadow: 0 0 12px rgba(255, 42, 60, 0.8);
         }
 
         .title span {
-            color: #ff4757;
+            color: #ff2a3c;
         }
 
         .input-group {
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
         label {
             display: block;
-            font-size: 13px;
-            font-weight: 500;
+            font-size: 12px;
+            font-weight: 700;
             color: #a4b0be;
-            margin-bottom: 8px;
+            margin-bottom: 7px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -68,52 +68,54 @@
         input[type="text"], input[type="number"], select {
             width: 100%;
             padding: 12px 16px;
-            background: #161d24;
-            border: 1px solid #2f3542;
+            background: #12151e;
+            border: 1px solid #282d3c;
             border-radius: 10px;
             color: #fff;
-            font-size: 15px;
+            font-size: 14px;
             outline: none;
             transition: all 0.3s ease;
         }
 
         select option {
-            background: #161d24;
+            background: #12151e;
             color: #fff;
         }
 
         input[type="text"]:focus, input[type="number"]:focus, select:focus {
-            border-color: #ff4757;
-            box-shadow: 0 0 10px rgba(255, 71, 87, 0.3);
+            border-color: #ff2a3c;
+            box-shadow: 0 0 12px rgba(255, 42, 60, 0.4);
         }
 
         .auto-tag {
             display: inline-block;
-            font-size: 11px;
-            background: rgba(46, 213, 115, 0.2);
-            color: #2ed573;
-            border: 1px solid #2ed573;
+            font-size: 10px;
+            background: rgba(0, 255, 136, 0.15);
+            color: #00ff88;
+            border: 1px solid #00ff88;
             padding: 2px 8px;
             border-radius: 12px;
             margin-left: 6px;
             text-transform: none;
+            font-weight: 600;
         }
 
         .note-text {
             font-size: 11px;
-            color: #ffaa00;
-            margin-top: 6px;
+            color: #ffb100;
+            margin-top: 5px;
             display: block;
+            font-weight: 500;
         }
 
         .checkbox-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            background: #161d24;
+            gap: 8px;
+            background: #12151e;
             padding: 12px;
             border-radius: 10px;
-            border: 1px solid #2f3542;
+            border: 1px solid #282d3c;
         }
 
         .checkbox-item {
@@ -121,58 +123,47 @@
             align-items: center;
             gap: 8px;
             cursor: pointer;
-            font-size: 13px;
-            color: #ccc;
+            font-size: 12px;
+            color: #dcdde1;
         }
 
         .checkbox-item input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            accent-color: #ff4757;
+            width: 15px;
+            height: 15px;
+            accent-color: #ff2a3c;
             cursor: pointer;
         }
 
         .btn-main {
             width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #ff4757, #ff6b81);
+            padding: 15px;
+            background: linear-gradient(135deg, #ff2a3c, #ff6b6b);
             border: none;
             border-radius: 10px;
             color: #fff;
             font-family: 'Orbitron', sans-serif;
             font-size: 14px;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: 1px;
             cursor: pointer;
             margin-top: 10px;
-            box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+            box-shadow: 0 5px 20px rgba(255, 42, 60, 0.5);
             transition: all 0.3s ease;
         }
 
         .btn-main:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.6);
+            box-shadow: 0 8px 25px rgba(255, 42, 60, 0.8);
         }
 
         .result-card {
             display: none;
-            margin-top: 25px;
-            background: #12181f;
+            margin-top: 22px;
+            background: #0d1017;
             border-radius: 12px;
-            padding: 20px;
-            border: 1px solid #2f3542;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        .error-card {
-            background: rgba(255, 71, 87, 0.15);
-            border: 1px solid #ff4757;
-            color: #ff6b81;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 14px;
+            padding: 18px;
+            border: 1px solid #ff2a3c;
+            animation: fadeIn 0.35s ease-in-out;
         }
 
         @keyframes fadeIn {
@@ -183,128 +174,128 @@
         .result-header {
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid #2f3542;
-            padding-bottom: 10px;
+            border-bottom: 1px solid #282d3c;
+            padding-bottom: 8px;
             margin-bottom: 12px;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .result-header span {
-            color: #ff4757;
+            color: #ff2a3c;
             font-weight: bold;
         }
 
         .stat-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 8px;
         }
 
         .stat-item {
-            background: #1a222d;
-            padding: 10px 12px;
+            background: #171b26;
+            padding: 8px 12px;
             border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .stat-label {
-            font-size: 12px;
+            font-size: 11px;
             color: #a4b0be;
         }
 
         .stat-val {
             font-family: 'Orbitron', sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-            color: #2ed573;
+            font-size: 15px;
+            font-weight: 800;
+            color: #00ff88;
         }
 
         .tip-box {
-            margin-top: 15px;
-            background: rgba(255, 71, 87, 0.1);
-            border-left: 3px solid #ff4757;
+            margin-top: 14px;
+            background: rgba(255, 42, 60, 0.08);
+            border-left: 3px solid #ff2a3c;
             padding: 10px 12px;
             border-radius: 0 8px 8px 0;
             font-size: 12px;
-            color: #ff6b81;
+            color: #ff7675;
             line-height: 1.5;
+        }
+
+        .ultra-badge {
+            display: block;
+            text-align: center;
+            background: linear-gradient(90deg, #ff2a3c, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 13px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="title">Độ Nhạy <span>FF Full Red</span></div>
+    <div class="title">Độ Nhạy <span>Ultra Headshot</span></div>
 
-    <!-- TỰ ĐỘNG PHÁT HIỆN ĐIỆN THOẠI -->
     <div class="input-group">
-        <label for="device">Tên Dòng Máy <span class="auto-tag">⚡ Tự động nhận</span></label>
-        <input type="text" id="device" placeholder="Đang nhận diện thiết bị...">
+        <label for="device">Máy Đang Dùng <span class="auto-tag">⚡ Tự nhận dạng</span></label>
+        <input type="text" id="device" placeholder="Đang đọc thiết bị...">
     </div>
 
-    <!-- MỤC CHỌN LOẠI SÚNG -->
     <div class="input-group">
-        <label for="gunType">Chọn Loại Súng Cần Bắn</label>
+        <label for="gunType">Chế Độ Bắn Đặc Biệt</label>
         <select id="gunType">
-            <option value="all">🔥 Tất Cả Loại Súng (Cân Bằng)</option>
-            <option value="m1887">💥 M1887 / Shotgun (Vuốt Cự Ly Gần)</option>
-            <option value="smg">⚡ MP40 / MP5 / Thompson (Sấy Tốc Độ)</option>
-            <option value="m590">🛡️ M1014 / M590 / MAG-7 (Xả Đạn Nhanh)</option>
-            <option value="ar">🎯 Súng Trường (AK, M4A1, GROZA, Scar)</option>
-            <option value="one_shot">☠️ Desert Eagle / Woodpecker (One Shot)</option>
+            <option value="m1887">💥 M1887 / M590 / Shotgun (One-Shot Siêu Nhẹ)</option>
+            <option value="smg">⚡ MP40 / MP5 / Thompson (Sấy Khóa Đầu)</option>
+            <option value="one_shot">☠️ Desert Eagle / Woodpecker (Vẩy Tâm Chữ U)</option>
+            <option value="ar">🎯 Súng Trường (AK, M4A1, GROZA - Đầm Tâm)</option>
+            <option value="all">🔥 All Súng (Cân Bằng Siêu Tốc)</option>
         </select>
     </div>
 
     <div class="input-group">
-        <label for="dpi">Chỉ Số DPI</label>
+        <label for="dpi">Chỉ Số DPI Máy</label>
         <input type="number" id="dpi" placeholder="Nhập DPI thực tế">
-        <span class="note-text">⚠️ Hệ thống dpi có sai sót vui lòng chỉnh lại một chút</span>
+        <span class="note-text">⚡ Mẹo: Tăng DPI trong Cài đặt nhà phát triển lên 480 - 560 để cảm ứng siêu nhạy.</span>
     </div>
 
     <div class="input-group">
-        <label>Chọn Tình Trạng Khi Bắn:</label>
+        <label>Tình Trạng Cần Bẻ Cong Tâm:</label>
         <div class="checkbox-grid">
-            <label class="checkbox-item"><input type="checkbox" value="nang_tam"> Nặng tâm</label>
-            <label class="checkbox-item"><input type="checkbox" value="lo_dau"> Lố đầu</label>
-            <label class="checkbox-item"><input type="checkbox" value="giat_tam"> Giật tâm</label>
-            <label class="checkbox-item"><input type="checkbox" value="rung_tay"> Rung tay</label>
-            <label class="checkbox-item"><input type="checkbox" value="lac_dan"> Lạc đạn</label>
-            <label class="checkbox-item"><input type="checkbox" value="truot_dich"> Trượt địch</label>
+            <label class="checkbox-item"><input type="checkbox" value="nang_tam" checked> Nặng tâm (Dính ngực)</label>
+            <label class="checkbox-item"><input type="checkbox" value="lo_dau"> Lố đầu (Bay qua đầu)</label>
+            <label class="checkbox-item"><input type="checkbox" value="giat_tam"> Giật tâm / Rung màn</label>
+            <label class="checkbox-item"><input type="checkbox" value="truot_dich"> Trượt lệch tâm</label>
         </div>
     </div>
 
-    <button class="btn-main" onclick="tinhDoNhay()">KÍCH HOẠT CHẾ ĐỘ FULL RED</button>
+    <button class="btn-main" onclick="tinhDoNhay()">KÍCH HOẠT THUẬT TOÁN FULL RED</button>
 
     <div id="resultBox" class="result-card"></div>
 </div>
 
 <script>
-const brandList = [
-    "vivo", "samsung", "iphone", "ipad", "xiaomi", "redmi", "poco", 
-    "oppo", "realme", "asus", "rog", "iqoo", "tecno", "infinix", 
-    "huawei", "honor", "oneplus", "pixel", "sony"
-];
-
 window.onload = function() {
     let ua = navigator.userAgent.toLowerCase();
-    let detectedDevice = "Thiết bị Android / iOS";
+    let detectedDevice = "Thiết bị Di Động";
 
-    if (ua.includes("vivo")) detectedDevice = "Vivo";
+    if (ua.includes("vivo")) detectedDevice = "Vivo (Cảm ứng cao)";
     else if (ua.includes("samsung")) detectedDevice = "Samsung Galaxy";
-    else if (ua.includes("iphone")) detectedDevice = "iPhone";
-    else if (ua.includes("ipad")) detectedDevice = "iPad (Tablet)";
+    else if (ua.includes("iphone")) detectedDevice = "iPhone (iOS Speed)";
+    else if (ua.includes("ipad")) detectedDevice = "iPad (Màn rộng)";
     else if (ua.includes("xiaomi") || ua.includes("redmi")) detectedDevice = "Xiaomi / Redmi";
     else if (ua.includes("oppo")) detectedDevice = "OPPO";
     else if (ua.includes("realme")) detectedDevice = "Realme";
-    else if (ua.includes("huawei")) detectedDevice = "Huawei";
-    else if (ua.includes("android")) detectedDevice = "Thiết bị Android";
 
     document.getElementById("device").value = detectedDevice;
 
     let ratio = window.devicePixelRatio || 1;
-    let estimatedDpi = Math.round(320 * ratio);
+    let estimatedDpi = Math.round(360 * ratio);
     document.getElementById("dpi").value = estimatedDpi;
 };
 
@@ -313,102 +304,62 @@ function tinhDoNhay() {
     let gunType = document.getElementById("gunType").value;
     let resultBox = document.getElementById("resultBox");
 
-    if (!inputDevice) {
-        resultBox.className = "result-card error-card";
-        resultBox.innerHTML = "⚠️ Vui lòng nhập tên dòng điện thoại!";
-        resultBox.style.display = "block";
-        return;
-    }
-
     let lowerInput = inputDevice.toLowerCase();
-    let isValidBrand = brandList.some(brand => lowerInput.includes(brand)) || lowerInput.includes("thiết bị") || lowerInput.includes("android") || lowerInput.includes("ios");
-    
-    if (!isValidBrand) {
-        resultBox.className = "result-card error-card";
-        resultBox.innerHTML = "❌ Điện thoại không tồn tại trong hệ thống!";
-        resultBox.style.display = "block";
-        return;
-    }
-
-    let dpi = parseInt(document.getElementById("dpi").value) || 400;
+    let dpi = parseInt(document.getElementById("dpi").value) || 450;
     let selectedBoxes = document.querySelectorAll('.checkbox-grid input[type="checkbox"]:checked');
     let selectedStatuses = Array.from(selectedBoxes).map(cb => cb.value);
 
     let isTablet = lowerInput.includes("tab") || lowerInput.includes("pad") || lowerInput.includes("ipad");
 
-    // Chỉ số mặc định
-    let look = isTablet ? 185 : 195;
-    let redDot = isTablet ? 180 : 190;
-    let scope2x = isTablet ? 170 : 180;
-    let scope4x = isTablet ? 155 : 165;
-    let sniper = 120;
+    // Thuật toán Ultra: Max nhạy để loại bỏ hoàn toàn ma sát màn hình
+    let look = 200;
+    let redDot = 200;
+    let scope2x = 200;
+    let scope4x = 190;
+    let sniper = 130;
     let freeLook = 100;
-    let btnSize = isTablet ? 45 : 38;
+    let btnSize = isTablet ? 32 : 28; // Giảm diện tích nút bấm siêu nhỏ để tăng lực vuốt
     let gunTip = "";
 
-    // Điều chỉnh theo từng loại súng
     switch (gunType) {
         case "m1887":
-            look = 200;
-            redDot = 195;
-            btnSize = isTablet ? 42 : 35; // Nút bắn nhỏ dễ vuốt chữ J cận chiến
-            gunTip = "<b>M1887 / Shotgun:</b> Đặt tâm trắng ngang cổ hoặc cạnh bên hông địch, nhấn vuốt phím bắn nhanh theo hình chữ <b>J</b> dứt khoát.";
+            btnSize = isTablet ? 30 : 26;
+            gunTip = "<b>Kỹ Thuật M1887 Full Red:</b> Đặt tâm màu TRẮNG lệch sang bên trái/phải sườn địch 1 khoảng ngắn. Nhấn giữ nút bắn và <b>móc nhanh theo đường cong chữ J</b> hướng thẳng lên đầu.";
             break;
-        case "smg": // MP40, MP5
-            look = 190;
-            redDot = 188;
-            btnSize = isTablet ? 46 : 40; 
-            gunTip = "<b>MP40 / MP5 / SMG:</b> Đặt tâm sát bên dưới chân hoặc ngang ngực, nhấp nhẹ phím bắn vuốt thẳng đứng để ghìm tâm đỏ đầu.";
+        case "smg":
+            btnSize = isTablet ? 34 : 29;
+            gunTip = "<b>Kỹ Thuật MP40/MP5 Sấy Đầu:</b> Để tâm TRẮNG dưới chân địch. Vuốt nút bắn một lực vừa đủ thẳng đứng lên trên, khi tâm chớm đỏ thì thả nhẹ lực vuốt để ghìm đạn vào đầu.";
             break;
-        case "m590": // M1014, M590
-            look = 198;
-            redDot = 192;
-            btnSize = isTablet ? 44 : 36;
-            gunTip = "<b>M1014 / M590:</b> Cần kéo nhịp nhàng từng viên, vuốt nút bắn từ dưới kéo mạnh thẳng lên đỉnh màn hình.";
+        case "one_shot":
+            btnSize = isTablet ? 28 : 25;
+            gunTip = "<b>Kỹ Thuật One-Shot Desert Eagle:</b> Đặt nút bắn kích thước 25-28% ở góc thấp nhất. Đặt tâm ngang vai địch rồi <b>vẩy thật dứt khoát</b> lên đỉnh màn hình.";
             break;
-        case "one_shot": // Desert Eagle
-            look = 200;
-            redDot = 200;
-            btnSize = isTablet ? 40 : 34;
-            gunTip = "<b>Desert Eagle / One Shot:</b> Nút bắn nhỏ giúp kéo tâm bay cực nhanh. Vuốt nút bắn hình chữ <b>U</b> hoặc vẩy thẳng đứng.";
+        case "ar":
+            btnSize = isTablet ? 36 : 32;
+            gunTip = "<b>Kỹ Thuật Súng Trường:</b> Nhấp nhả nút bắn theo nhịp 3 viên (Tap-fire). Đặt tâm màu đỏ ngang ngực rồi vuốt nhẹ lên.";
             break;
-        case "ar": // Súng trường
-            look = 185;
-            redDot = 180;
-            scope2x = 175;
-            scope4x = 160;
-            btnSize = isTablet ? 48 : 42;
-            gunTip = "<b>Súng Trường (AK, M4A1):</b> Giữ nhịp bắn 3-4 viên nhả một lần để đạn không bị xòe, nút bắn to hơn giúp ghìm tâm cực đầm.";
-            break;
-        default: // Tất cả súng
-            gunTip = "<b>Cân Bằng Tất Cả Súng:</b> Hạ nút bắn sát cạnh đáy màn hình. Đặt tâm màu trắng ngang cổ địch rồi vuốt dứt khoát lên.";
+        default:
+            gunTip = "<b>Mẹo Siêu Kéo Tâm:</b> Luôn giữ tâm ở dạng màu TRẮNG trước khi kéo. Nếu tâm dính màu ĐỎ vào ngực trước khi vuốt, đạn sẽ bị nặng tâm 100%.";
             break;
     }
 
-    // Tự động tối ưu theo tình trạng lỗi bắn
-    if (selectedStatuses.includes("lo_dau") || selectedStatuses.includes("giat_tam")) {
-        look -= 8;
-        redDot -= 8;
+    if (selectedStatuses.includes("lo_dau")) {
+        redDot -= 5;
         btnSize += 2;
     }
 
-    if (selectedStatuses.includes("nang_tam") || selectedStatuses.includes("truot_dich")) {
+    if (selectedStatuses.includes("nang_tam")) {
         look = 200;
-        redDot = 198;
-        btnSize = Math.max(30, btnSize - 2);
+        redDot = 200;
+        btnSize = Math.max(24, btnSize - 2);
     }
-
-    look = Math.min(200, Math.max(0, look));
-    redDot = Math.min(200, Math.max(0, redDot));
-    scope2x = Math.min(200, Math.max(0, scope2x));
-    scope4x = Math.min(200, Math.max(0, scope4x));
-    sniper = Math.min(200, Math.max(0, sniper));
 
     resultBox.className = "result-card";
     resultBox.innerHTML = `
+        <span class="ultra-badge">⚡ ULTRA ENGINE HEADSHOT ACTIVATED ⚡</span>
         <div class="result-header">
-            <div>Thiết bị: <span>${inputDevice}</span></div>
-            <div>DPI: <span>${dpi}</span></div>
+            <div>Cấu hình: <span>${inputDevice}</span></div>
+            <div>DPI Đề Xuất: <span>${dpi}</span></div>
         </div>
 
         <div class="stat-grid">
@@ -418,13 +369,14 @@ function tinhDoNhay() {
             <div class="stat-item"><span class="stat-label">Ống ngắm 4x</span><span class="stat-val">${scope4x}</span></div>
             <div class="stat-item"><span class="stat-label">Ống ngắm Sniper</span><span class="stat-val">${sniper}</span></div>
             <div class="stat-item"><span class="stat-label">Nhìn tự do</span><span class="stat-val">${freeLook}</span></div>
-            <div class="stat-item" style="grid-column: span 2;"><span class="stat-label">Kích thước nút bắn</span><span class="stat-val" style="color: #ff4757;">${btnSize}%</span></div>
+            <div class="stat-item" style="grid-column: span 2; border: 1px solid rgba(0,255,136,0.3);"><span class="stat-label" style="color:#00ff88;">Kích thước nút bắn Ultra</span><span class="stat-val" style="color: #ff2a3c; font-size: 18px;">${btnSize}%</span></div>
         </div>
 
         <div class="tip-box">
-            🎯 <b>Mẹo Kéo Tâm Chuẩn:</b><br>
-            1. Đặt kích thước nút bắn <b>${btnSize}%</b> và kéo nằm ở phần dưới cùng màn hình.<br>
-            2. ${gunTip}
+            🎯 <b>CÁCH KÉO TÂM SIÊU ĐỈNH (FULL RED 100%):</b><br>
+            1. Hạ nút bắn xuống kích thước chuẩn <b>${btnSize}%</b> và đặt kéo sát mép dưới màn hình.<br>
+            2. ${gunTip}<br>
+            3. <b>Mẹo vật lý:</b> Lau sạch màn hình hoặc thoa một ít phấn rôm để ngón tay lướt siêu mượt không bị rít.
         </div>
     `;
 
